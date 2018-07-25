@@ -161,7 +161,25 @@ extern "C" {
 				This function returns a pointer to a #hid_device object on
 				success or NULL on failure.
 		*/
-		HID_API_EXPORT hid_device * HID_API_CALL hid_open(unsigned short vendor_id, unsigned short product_id, const wchar_t *serial_number);
+        HID_API_EXPORT hid_device * HID_API_CALL hid_open(unsigned short vendor_id, unsigned short product_id, const wchar_t *serial_number);
+
+        /** @brief Same as hid_open, except you can specify the interface number
+            instead of the serial number
+
+            If @p interface_number is -1, the first device with the
+            specified VID and PID is opened.
+
+            @ingroup API
+            @param vendor_id The Vendor ID (VID) of the device to open.
+            @param product_id The Product ID (PID) of the device to open.
+            @param interface_number The interface number of the device to open
+                                (Optionally -1).
+
+            @returns
+                This function returns a pointer to a #hid_device object on
+                success or NULL on failure.
+        */
+        HID_API_EXPORT hid_device * HID_API_CALL hid_open_interface(unsigned short vendor_id, unsigned short product_id, int interface_number);
 
 		/** @brief Open a HID device by its path name.
 
